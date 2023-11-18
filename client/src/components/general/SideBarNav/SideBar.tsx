@@ -1,5 +1,7 @@
+import { Link } from "@nextui-org/react";
+
 const sidebarStyles: React.CSSProperties = {
-  width: '500px',
+  width: '250px',
   height: '100%',
   backgroundColor: '#333',
   color: 'white',
@@ -18,10 +20,6 @@ const fileListStyles: React.CSSProperties = {
   paddingLeft: '0',
 };
 
-const fileItemStyles: React.CSSProperties = {
-  marginBottom: '8px',
-};
-
 const fileIconStyles: React.CSSProperties = {
   marginRight: '8px',
 };
@@ -32,7 +30,9 @@ const Sidebar: React.FC = () => {
       name: 'src',
       type: 'folder',
       children: [
-        { name: 'components', type: 'folder', children: [] },
+        { name: 'components', type: 'folder', children: [
+          { name: 'package.json', type: 'file' }
+        ] },
         { name: 'pages', type: 'folder', children: [] },
         { name: 'styles', type: 'folder', children: [] },
       ],
@@ -50,15 +50,22 @@ const Sidebar: React.FC = () => {
     </div>
   );
 };
-
-const renderFileStructure = (structure: any[]) => {
+const getFileItemStyles = (indent: number): React.CSSProperties => {
+return {
+  marginBottom: '8px',
+  marginLeft: String(indent) + 'px'
+};
+}
+const renderFileStructure = (structure: any[], indent = 0) => {
   return (
     <ul style={fileListStyles}>
       {structure.map((item, index) => (
-        <li key={index} style={fileItemStyles}>
+        <li key={index} style={getFileItemStyles(indent)}>
           <span style={fileIconStyles}>{item.type === 'folder' ? '📁' : '📄'}</span>
-          {item.name}
-          {item.children && item.children.length > 0 && renderFileStructure(item.children)}
+          <Link href={`/files/${encodeURIComponent(item.name)}`}>
+            <a style={{ color: 'white', textDecoration: 'none' }}>{item.name}</a>
+          </Link>
+          {item.children && item.children.length > 0 && renderFileStructure(item.children, indent + 5)}
         </li>
       ))}
     </ul>
