@@ -8,12 +8,12 @@ import {
 } from 'react-router-dom';
 import Root from './pages/Root';
 import useDarkMode from 'use-dark-mode';
-import Chat from './components/general/chat/Chat';
+import MyEditor from "./pages/Editor";
 
 const RoutesJSX = (
     <>
         <Route path="/" element={<Root />}>
-            <Route index element={<Chat />} />
+            <Route index element={<MyEditor />} />
         </Route>
     </>
 );
