@@ -11,7 +11,7 @@ function Root() {
                 <div className="bg-content1">
                     <MainNav/>
                 </div>
-                <div>
+                <div className="w-full">
                     {/* The Outlet component renders the content based on React Router routes */}
                     <Outlet/>
                 </div>

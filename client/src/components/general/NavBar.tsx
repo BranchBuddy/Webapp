@@ -1,22 +1,33 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu} from "@nextui-org/react";
-import { FaChevronDown } from "react-icons/fa6";
+import {
+    Navbar,
+    NavbarBrand,
+    NavbarContent,
+    NavbarItem,
+    Link,
+    Button,
+    DropdownItem,
+    DropdownTrigger,
+    Dropdown,
+    DropdownMenu
+} from "@nextui-org/react";
+import {FaChevronDown} from "react-icons/fa6";
 
 function NavBar() {
 
     return (
         <Navbar>
-            <NavbarBrand>
+            <NavbarContent justify="start">
                 <p className="font-bold text-inherit">BranchBuddy</p>
-            </NavbarBrand>
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
+            </NavbarContent>
+            <NavbarContent className="hidden sm:flex gap-4 w-800" justify="center">
                 <Dropdown>
                     <NavbarItem>
                         <DropdownTrigger>
                             <Button
                                 disableRipple
                                 className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                                endContent={<FaChevronDown />}
+                                endContent={<FaChevronDown/>}
                                 radius="sm"
                                 variant="light"
                             >

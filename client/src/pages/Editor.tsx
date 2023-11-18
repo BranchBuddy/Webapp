@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import Editor, { OnChange } from '@monaco-editor/react';
+import React, {FC, useState} from 'react';
+import Editor, {OnChange} from '@monaco-editor/react';
 
 const MyEditor: FC = () => {
     const [value, setValue] = useState<string>("// some comment");
