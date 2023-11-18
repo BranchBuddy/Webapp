@@ -14,16 +14,6 @@ const MyEditor: FC = () => {
     useEffect(() => {
         console.log(fileName)
         // Simulating a data fetch, replace with your actual data fetching logic
-        switch (fileName) {
-            case "package.json":
-                setFileContent('Content of Package.json')
-                return
-            case 'README.md':
-                setFileContent('Content of README.md')
-                return
-            default:
-                setFileContent('Content of README.md')
-        }
       }, [fileName]);
     return (
         <Editor
