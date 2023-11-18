@@ -5,19 +5,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client start\"",
-    "server": "yarn workspace server start",
-    "server:dev": "yarn workspace server dev",
     "client": "yarn workspace client start",
-    "build": "concurrently \"yarn workspace server build\" \"yarn workspace client build\""
+    "build": "yarn workspace client build"
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
     "typescript": "^5.1.6"
   },
   "workspaces": [
-    "client",
-    "server"
+    "client"
   ],
   "dependencies": {
     "@types/node": "^20.5.1",
