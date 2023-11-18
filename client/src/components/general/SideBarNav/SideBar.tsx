@@ -3,12 +3,12 @@ import {FileStructureContext, FileStructureContextProvider} from "../../../ cont
 import {useContext} from "react";
 
 const sidebarStyles: React.CSSProperties = {
-    width: '250px',
-    height: '100%',
-    backgroundColor: '#333',
-    color: 'white',
-    padding: '20px',
-    overflowY: 'auto',
+  width: '250px',
+  height: '100%',
+  backgroundColor: 'black',
+  color: 'white',
+  padding: '20px',
+  overflowY: 'auto',
 };
 
 const sidebarHeaderStyles: React.CSSProperties = {
@@ -50,20 +50,20 @@ const getFileItemStyles = (indent: number): React.CSSProperties => {
         marginLeft: String(indent) + 'px'
     };
 }
-const renderFileStructure = (structure: any[], indent = 0) => {
-    return (
-        <ul style={fileListStyles}>
-            {structure.map((item, index) => (
-                <li key={index} style={getFileItemStyles(indent)}>
-                    <span style={fileIconStyles}>{item.type === 'folder' ? '📁' : '📄'}</span>
-                    <Link href={`/files/${encodeURIComponent(item.name)}`}>
-                        <a style={{color: 'white', textDecoration: 'none'}}>{item.name}</a>
-                    </Link>
-                    {item.children && item.children.length > 0 && renderFileStructure(item.children, indent + 5)}
-                </li>
-            ))}
-        </ul>
-    );
+const renderFileStructure = (structure: any[], path:string, indent = 0) => {
+  return (
+    <ul style={fileListStyles}>
+      {structure.map((item, index) => (
+        <li key={index} style={getFileItemStyles(indent)}>
+          <span style={fileIconStyles}>{item.type === 'folder' ? '📁' : '📄'}</span>
+          <Link to={item.type === 'folder' ? '' : encodeURIComponent(`${path}/${item.name}`)}>
+            <a style={{ color: 'white', textDecoration: 'none' }}>{item.name}</a>
+          </Link>
+          {item.children && item.children.length > 0 && renderFileStructure(item.children,`${path}/${item.name}`, indent + 5)}
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default Sidebar;

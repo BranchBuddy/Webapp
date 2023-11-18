@@ -1,5 +1,5 @@
 import React from 'react';
-import {NextUIProvider} from '@nextui-org/react';
+import { NextUIProvider } from '@nextui-org/react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -14,7 +14,7 @@ import {FileStructureContextProvider} from "./ contexts/FileStructureContent";
 const RoutesJSX = (
     <>
         <Route path="/" element={<Root/>}>
-            <Route index element={<MyEditor/>}/>
+            <Route path="/:fileName" element={<MyEditor/>}/>
         </Route>
     </>
 );
