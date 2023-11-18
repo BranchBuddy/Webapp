@@ -4,7 +4,7 @@ import React from 'react';
 
 const SendMessageBar = () => {
     return (
-        <div className="flex flex-grow-0 gap-4">
+        <div className="flex items-center w-full">
             <Textarea
                 minRows={1}
                 maxRows={3}

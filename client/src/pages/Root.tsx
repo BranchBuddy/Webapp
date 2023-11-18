@@ -3,6 +3,8 @@ import MainNav from '../components/general/MainNav';
 import {Outlet} from 'react-router-dom';
 import NavBar from "../components/general/NavBar";
 
+import Chat from '../components/general/chat/Chat';
+
 function Root() {
     return (
         <>
@@ -11,10 +13,11 @@ function Root() {
                 <div className="bg-content1">
                     <MainNav/>
                 </div>
-                <div className="w-full">
+                <div className="w-2/3">
                     {/* The Outlet component renders the content based on React Router routes */}
                     <Outlet/>
                 </div>
+                <Chat/>
             </div>
         </>
     );
