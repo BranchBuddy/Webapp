@@ -8,12 +8,12 @@ import {
 } from 'react-router-dom';
 import Root from './pages/Root';
 import useDarkMode from 'use-dark-mode';
-import MyEditor from "./pages/Editor";
+import Editor from './pages/Editor';
 
 const RoutesJSX = (
     <>
         <Route path="/" element={<Root />}>
-            <Route index element={<MyEditor />} />
+        <Route path="/:fileName" element={<Editor />} />
         </Route>
     </>
 );

@@ -1,9 +1,10 @@
-import { Link } from "@nextui-org/react";
+import { Link } from "react-router-dom";
+
 
 const sidebarStyles: React.CSSProperties = {
   width: '250px',
   height: '100%',
-  backgroundColor: '#333',
+  backgroundColor: 'black',
   color: 'white',
   padding: '20px',
   overflowY: 'auto',
@@ -46,7 +47,7 @@ const Sidebar: React.FC = () => {
   return (
     <div style={sidebarStyles}>
       <div style={sidebarHeaderStyles}>Project Structure</div>
-      {renderFileStructure(fileStructure)}
+      {renderFileStructure(fileStructure, '')}
     </div>
   );
 };
@@ -56,16 +57,16 @@ return {
   marginLeft: String(indent) + 'px'
 };
 }
-const renderFileStructure = (structure: any[], indent = 0) => {
+const renderFileStructure = (structure: any[], path:string, indent = 0) => {
   return (
     <ul style={fileListStyles}>
       {structure.map((item, index) => (
         <li key={index} style={getFileItemStyles(indent)}>
           <span style={fileIconStyles}>{item.type === 'folder' ? '📁' : '📄'}</span>
-          <Link href={`/files/${encodeURIComponent(item.name)}`}>
+          <Link to={item.type === 'folder' ? '' : encodeURIComponent(`${path}/${item.name}`)}>
             <a style={{ color: 'white', textDecoration: 'none' }}>{item.name}</a>
           </Link>
-          {item.children && item.children.length > 0 && renderFileStructure(item.children, indent + 5)}
+          {item.children && item.children.length > 0 && renderFileStructure(item.children,`${path}/${item.name}`, indent + 5)}
         </li>
       ))}
     </ul>
