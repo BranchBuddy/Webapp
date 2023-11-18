@@ -1,5 +1,5 @@
 import React from 'react';
-import { NextUIProvider } from '@nextui-org/react';
+import {NextUIProvider} from '@nextui-org/react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -9,11 +9,12 @@ import {
 import Root from './pages/Root';
 import useDarkMode from 'use-dark-mode';
 import MyEditor from "./pages/Editor";
+import {FileStructureContextProvider} from "./ contexts/FileStructureContent";
 
 const RoutesJSX = (
     <>
-        <Route path="/" element={<Root />}>
-            <Route index element={<MyEditor />} />
+        <Route path="/" element={<Root/>}>
+            <Route index element={<MyEditor/>}/>
         </Route>
     </>
 );
@@ -27,13 +28,16 @@ function App() {
 
     return (
         <NextUIProvider>
+            <FileStructureContextProvider>
                 <main
+                    id={'main'}
                     className={`${
                         darkMode.value ? 'dark' : ''
                     } text-foreground bg-background`}
                 >
-                    <RouterProvider router={router} />
+                    <RouterProvider router={router}/>
                 </main>
+            </FileStructureContextProvider>
         </NextUIProvider>
     );
 }
