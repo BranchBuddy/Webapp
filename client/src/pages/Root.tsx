@@ -1,9 +1,6 @@
-import React from 'react';
 import MainNav from '../components/general/MainNav';
 import {Outlet} from 'react-router-dom';
 import NavBar from "../components/general/NavBar";
-
-import Chat from '../components/general/chat/Chat';
 
 function Root() {
     return (
@@ -17,7 +14,6 @@ function Root() {
                     {/* The Outlet component renders the content based on React Router routes */}
                     <Outlet/>
                 </div>
-                <Chat/>
             </div>
         </>
     );

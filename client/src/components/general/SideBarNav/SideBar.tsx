@@ -5,7 +5,6 @@ import {useContext} from "react";
 const sidebarStyles: React.CSSProperties = {
     width: '250px',
     height: '100%',
-    backgroundColor: 'black',
     color: 'white',
     padding: '20px',
     overflowY: 'auto',

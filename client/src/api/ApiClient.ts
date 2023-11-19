@@ -7,7 +7,7 @@ export interface ApiError {
 }
 
 export class ApiClient {
-    private readonly baseURL: string = 'http://localhost:3000/api/';
+    private readonly baseURL: string = 'http://127.0.0.1:5000/';
 
     private async request<T>(config: AxiosRequestConfig): Promise<T> {
         const response: AxiosResponse<T> = await axios.request<T>({
@@ -38,7 +38,7 @@ export class ApiClient {
         data?: any,
         config?: AxiosRequestConfig,
     ): Promise<T> {
-        return await this.request<T>({ url, method: 'POST', data, ...config });
+        return await this.request<T>({ url: url, method: 'POST', data: data, ...config });
     }
 
     public async put<T>(

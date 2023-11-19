@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import {FaChevronDown} from "react-icons/fa6";
 import UploadFile from "../Modals/UploadFile";
+import GitHubLoader from "../Modals/GithubLoader";
 
 function NavBar() {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -73,6 +74,7 @@ function NavBar() {
                         <Button color="primary" href="#" variant="flat" onClick={handleUpload}>
                             Upload folder
                         </Button>
+                        {/* <GitHubLoader owner="BranchBuddy" repo="Webapp" filePath="Readme.md"></GitHubLoader> */}
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>
