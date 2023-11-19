@@ -32,7 +32,7 @@ function App() {
                 <main
                     id={'main'}
                     className={`${
-                        darkMode.value ? 'dark' : ''
+                        darkMode.value ? 'dark' : 'dark'
                     } text-foreground bg-background`}
                 >
                     <RouterProvider router={router}/>
