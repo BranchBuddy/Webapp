@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
 import {FileStructureContext, FileStructureContextProvider} from "../../../ contexts/FileStructureContent";
 import {useContext} from "react";
+import {Button, Code} from "@nextui-org/react";
+import {CiFileOn, CiFolderOn} from "react-icons/ci";
 
 const sidebarStyles: React.CSSProperties = {
     width: '250px',
@@ -30,38 +32,60 @@ export interface FileStructure {
     type: string;
     children?: FileStructure[];
     content?: string;
+    originalContent?: string;
 }
 
 const Sidebar: React.FC = () => {
     // Mock file structure
-    const {extractedContents} = useContext(FileStructureContext);
+    const {extractedContents, setSelectedFile} = useContext(FileStructureContext);
+
+    const getFileItemStyles = (indent: number): React.CSSProperties => {
+        return {
+            marginBottom: '8px',
+            marginTop: '8px',
+            marginLeft: String(indent) + 'px'
+        };
+    }
+
+    const renderFileStructure = (structure: any[], path: string, indent = 0) => {
+        return (
+            <ul style={fileListStyles}>
+                {structure.map((item, index) => (
+                    <li key={index} style={getFileItemStyles(indent)}>
+                        {
+                            item.type === 'file' && (
+                                <>{/*}
+                                    <Link to={encodeURIComponent(`${path}/${item.name}`)}>
+                                        <Code>{'📄 ' + item.name}</Code>
+                                    </Link> */}
+                                    <button onClick={() => {
+                                        console.log(`${path}/${item.name}`);
+                                        setSelectedFile(`${path}/${item.name}`)
+                                    }}>
+                                        <Code>{'📄 ' + item.name}</Code>
+                                    </button>
+                                </>
+                            )
+                        }
+                        {
+                            item.type === 'folder' && (
+                                <>
+                                    <Code>{'📁 ' + item.name}</Code>
+                                    {item.children && item.children.length > 0 && renderFileStructure(item.children!, `${path}/${item.name}`, indent + 20)}
+                                </>
+                            )
+                        }
+                    </li>
+                ))}
+            </ul>
+        );
+    };
 
     return (
         <div style={sidebarStyles}>
             <div style={sidebarHeaderStyles}>Project Structure</div>
             {renderFileStructure(extractedContents, '', 0)}
         </div>
-    );
-};
-const getFileItemStyles = (indent: number): React.CSSProperties => {
-    return {
-        marginBottom: '8px',
-        marginLeft: String(indent) + 'px'
-    };
-}
-const renderFileStructure = (structure: any[], path: string, indent = 0) => {
-    return (
-        <ul style={fileListStyles}>
-            {structure.map((item, index) => (
-                <li key={index} style={getFileItemStyles(indent)}>
-                    <span style={fileIconStyles}>{item.type === 'folder' ? '📁' : '📄'}</span>
-                    <Link to={item.type === 'folder' ? '' : encodeURIComponent(`${path}/${item.name}`)}>
-                        <a style={{color: 'white', textDecoration: 'none'}}>{item.name}</a>
-                    </Link>
-                    {item.children && item.children.length > 0 && renderFileStructure(item.children, `${path}/${item.name}`, indent + 5)}
-                </li>
-            ))}
-        </ul>
     );
 };
 

@@ -14,7 +14,7 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "axios": "^1.5.0",
-    "child_process": "^1.0.2",
+    "diff": "^5.1.0",
     "framer-motion": "^10.16.0",
     "fs": "^0.0.1-security",
     "jszip": "^3.10.1",
