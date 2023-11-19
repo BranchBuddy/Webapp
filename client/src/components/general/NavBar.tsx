@@ -24,7 +24,7 @@ function NavBar() {
 
     return (
         <>
-            <Navbar>
+            <Navbar disableScrollHandler={true}>
                 <NavbarContent justify="start">
                     <p className="font-bold text-inherit">BranchBuddy</p>
                 </NavbarContent>

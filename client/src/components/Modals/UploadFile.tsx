@@ -49,7 +49,7 @@ function UploadFileModal(props: UploadFileProps) {
                         continue;
                     }
                     const content = await file.async('string');
-                    currentFolder.push({name: part, type: 'file', content});
+                    currentFolder.push({name: part, type: 'file', content, originalContent: content});
                 } else {
                     let folder = currentFolder.find((f) => f.name === part && f.type === 'folder');
                     if (!folder) {
