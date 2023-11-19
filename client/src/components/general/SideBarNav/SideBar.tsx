@@ -14,7 +14,7 @@ const sidebarStyles: React.CSSProperties = {
 
 const sidebarHeaderStyles: React.CSSProperties = {
     fontSize: '1.5rem',
-    fontWeight: 'bold',
+    fontWeight: 'normal',
     marginBottom: '20px',
 };
 
@@ -54,12 +54,8 @@ const Sidebar: React.FC = () => {
                     <li key={index} style={getFileItemStyles(indent)}>
                         {
                             item.type === 'file' && (
-                                <>{/*}
-                                    <Link to={encodeURIComponent(`${path}/${item.name}`)}>
-                                        <Code>{'📄 ' + item.name}</Code>
-                                    </Link> */}
-                                    <button onClick={() => {
-                                        console.log(`${path}/${item.name}`);
+                                <>
+                                    <button style={{color: 'white', backgroundColor: 'transparent'}} onClick={() => {
                                         setSelectedFile(`${path}/${item.name}`)
                                     }}>
                                         <Code>{'📄 ' + item.name}</Code>
