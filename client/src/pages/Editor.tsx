@@ -4,6 +4,30 @@ import {FileStructureContext} from "../ contexts/FileStructureContent";
 import {FileStructure} from "../components/general/SideBarNav/SideBar";
 import {getFileContentFromStructure} from '../components/general/NavBar';
 
+function getLanguageFromFileName(fileName: string): string {
+    const fileExtension = fileName.split('.').pop()!.toLowerCase();
+
+    if (fileExtension === 'js' || fileExtension === 'jsx') {
+        return 'JavaScript';
+    } else if (fileExtension === 'ts' || fileExtension === 'tsx') {
+        return 'TypeScript';
+    } else if (fileExtension === 'py') {
+        return 'Python';
+    } else if (fileExtension === 'java') {
+        return 'Java';
+    } else if (fileExtension === 'cpp') {
+        return 'C++';
+    } else if (fileExtension === 'html') {
+        return 'HTML';
+    } else if (fileExtension === 'css') {
+        return 'CSS';
+    } else {
+        // Add more conditions as needed
+        return 'Unknown';
+    }
+}
+
+
 export function setFileContentFromStructure(fileStructure: FileStructure[], filePath: string, content: string): FileStructure[] {
     const pathParts = filePath.split('/');
     let currentLevel = fileStructure;
@@ -56,6 +80,7 @@ const MyEditor: FC = () => {
     return (
         <Editor
             defaultLanguage="typescript"
+            language={getLanguageFromFileName(selectedFile)}
             theme={'vs-dark'}
             value={fileContent}
             onChange={handleEditorChange}

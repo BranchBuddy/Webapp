@@ -33,11 +33,12 @@ export interface FileStructure {
     children?: FileStructure[];
     content?: string;
     originalContent?: string;
+    styles?: string 
 }
 
 const Sidebar: React.FC = () => {
     // Mock file structure
-    const {extractedContents, setSelectedFile} = useContext(FileStructureContext);
+    const {extractedContents, setSelectedFile, selectedFile} = useContext(FileStructureContext);
 
     const getFileItemStyles = (indent: number): React.CSSProperties => {
         return {
@@ -55,10 +56,12 @@ const Sidebar: React.FC = () => {
                         {
                             item.type === 'file' && (
                                 <>
-                                    <button style={{color: 'white', backgroundColor: 'transparent'}} onClick={() => {
-                                        setSelectedFile(`${path}/${item.name}`)
+                                    <button onClick={() => {
+                                        setSelectedFile(`${path}/${item.name}`);
                                     }}>
-                                        <Code>{'📄 ' + item.name}</Code>
+                                        <Code color={selectedFile === `${path}/${item.name}` ? 'primary' : 'default'}>
+                                            {'📄 ' + item.name}
+                                        </Code>
                                     </button>
                                 </>
                             )

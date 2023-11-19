@@ -17,6 +17,8 @@ import {FileStructureContext} from "../../ contexts/FileStructureContent";
 import {FileStructure} from "./SideBarNav/SideBar";
 import {setFileContentFromStructure} from "../../pages/Editor";
 import DiffModal, {checkFileDifferences, DiffsToText} from "../Modals/DiffModal";
+import { FiUpload } from "react-icons/fi";
+
 
 export function getFileContentFromStructure(
     fileStructure: FileStructure[],
@@ -172,16 +174,16 @@ function NavBar() {
     }
     return (
         <>
-            <Navbar disableScrollHandler={true}>
+            <Navbar isBordered className="justify-between" classNames={
+                {
+                    'wrapper': 'max-w-full'
+                }
+            }>
                 <NavbarContent justify="start">
                     <p className="font-bold text-inherit">BranchBuddy</p>
                 </NavbarContent>
-                <NavbarContent
-                    className="hidden sm:flex gap-4 w-800"
-                    justify="center"
-                ></NavbarContent>
                 <NavbarContent justify="end">
-                    <NavbarItem>
+                    <NavbarItem> 
                         <Button
                             color="default"
                             href="#"
@@ -194,10 +196,8 @@ function NavBar() {
                         {/* <GitHubLoader owner="BranchBuddy" repo="Webapp" filePath="Readme.md"></GitHubLoader> */}
                     </NavbarItem>
                     <NavbarItem>
-                        {" "}
                         <Button
                             color="default"
-                            href="#"
                             variant="flat"
                             onClick={improveCode}
                         >
@@ -207,30 +207,27 @@ function NavBar() {
                     <NavbarItem>
                         <Button
                             color="default"
-                            href="#"
                             variant="flat"
                             onClick={commentCode}
                         >
                             Comment Code
                         </Button>
                     </NavbarItem>
-                    <Button color="primary" href="#" variant="flat" onClick={handleDiffs}>
+                    <Button color="default" variant="flat" onClick={handleDiffs}>
                         Check differences
                     </Button>
-                    <NavbarItem style={{
-                        paddingLeft: '10%',
-                        marginRight: '-40%'
-                    }}>
-                        <Button
-                            color="default"
-                            href="#"
-                            variant="flat"
-                            onClick={handleUpload}
-                        >
-                            Upload folder
-                        </Button>
+                </NavbarContent>
+                <NavbarContent justify="end">
+                    <NavbarItem>
+                            <Button
+                                color="primary"
+                                variant="flat"
+                                onClick={handleUpload}
+                            >
+                                <FiUpload/>
+                            </Button>
 
-                        {/* <GitHubLoader owner="BranchBuddy" repo="Webapp" filePath="Readme.md"></GitHubLoader> */}
+                            {/* <GitHubLoader owner="BranchBuddy" repo="Webapp" filePath="Readme.md"></GitHubLoader> */}
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>

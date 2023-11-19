@@ -71,17 +71,13 @@ function UploadFileModal(props: UploadFileProps) {
                 <ModalContent>
                     <ModalHeader>Upload Zip</ModalHeader>
                     <ModalBody>
-                        <Input
+                        <input
                             type="file"
-                            label="Upload File"
-                            onChange={handleFileChange}
-                        >
-                            Upload File
-                        </Input>
+                            onChange={handleFileChange}/>
                     </ModalBody>
                     <ModalFooter>
-                        <div className="mt-6 text-right">
-                            <Button onClick={props.onClose} color="primary" className="mx-6">
+                        <div className="text-right">
+                            <Button onClick={props.onClose} color="primary" >
                                 Done
                             </Button>
                         </div>
