@@ -47,35 +47,6 @@ const Sidebar: React.FC = () => {
         };
     }
 
-    function getFileContent(fileStructure: FileStructure[], filePath: string): string | undefined {
-        const pathParts = filePath.split('/');
-        let currentLevel = fileStructure;
-
-        for (let i = 0; i < pathParts.length; i++) {
-            const part = pathParts[i];
-
-            const item = currentLevel.find((item) => item.name === part);
-
-            if (!item) {
-                // Path not found
-                return undefined;
-            }
-
-            if (item.type === 'file' && i === pathParts.length - 1) {
-                // Found the file, return its content
-                return item.content;
-            }
-
-            if (item.type === 'folder') {
-                // Move to the next level of the hierarchy
-                currentLevel = item.children || [];
-            }
-        }
-
-        // Path points to a folder, not a file
-        return undefined;
-    }
-
     const renderFileStructure = (structure: any[], path: string, indent = 0) => {
         return (
             <ul style={fileListStyles}>
@@ -88,7 +59,8 @@ const Sidebar: React.FC = () => {
                                         <Code>{'📄 ' + item.name}</Code>
                                     </Link> */}
                                     <button onClick={() => {
-                                        setSelectedFile(item.content!)
+                                        console.log(`${path}/${item.name}`);
+                                        setSelectedFile(`${path}/${item.name}`)
                                     }}>
                                         <Code>{'📄 ' + item.name}</Code>
                                     </button>

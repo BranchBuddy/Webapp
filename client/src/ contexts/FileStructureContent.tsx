@@ -25,8 +25,8 @@ interface FileStructureContextProviderProps {
 
 export const FileStructureContextProvider: React.FC<FileStructureContextProviderProps> = ({children}) => {
     const [extractedContents, setExtractedContents] = useState<FileStructure[]>([]);
-
     const [selectedFile, setSelectedFile] = useState<string>('');
+
     return (
         <FileStructureContext.Provider value={{extractedContents, setExtractedContents, selectedFile, setSelectedFile}}>
             {children}
