@@ -31,18 +31,7 @@ function App() {
     const repo = 'Webapp';
     const commitHash = 'c82c54eb9e68437c274f5ccd1f372fbfd0522e46';
     const filePath = 'client/src/pages/Editor.tsx';
-
-    getFileContentAfterCommit(owner, repo, commitHash, filePath)
-        .then((content) => {
-            console.log('File content:', content);
-        })
-        .catch((error) => {
-            if (error instanceof Error) {
-                console.error('Error:', error.message);
-            } else {
-                console.error('An error occurred.');
-            }
-        });
+    
 
     return (
         <NextUIProvider>

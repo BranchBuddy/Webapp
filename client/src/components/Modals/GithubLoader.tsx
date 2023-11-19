@@ -34,13 +34,6 @@ const extractAllCommits = async (owner: string, repo: string) => {
             },
         });
 
-        // Get head of all branches
-        const branchesResponse = await octokit.git.listMatchingRefs({
-            owner,
-            repo,
-            ref: 'heads/',
-        });
-
         const commit_url: string[] = (response.data[0].html_url as string).split('/')
         const commit_ref = commit_url[commit_url.length - 1]
         const commit = await octokit.request(`GET /repos/${owner}/${repo}/commits/${commit_ref}`, {
