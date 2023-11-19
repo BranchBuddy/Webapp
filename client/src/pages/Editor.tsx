@@ -2,7 +2,7 @@ import React, {FC, useContext, useEffect, useState} from 'react';
 import Editor, {OnChange} from '@monaco-editor/react';
 import {FileStructureContext} from "../ contexts/FileStructureContent";
 import {FileStructure} from "../components/general/SideBarNav/SideBar";
-import { getFileContentFromStructure } from '../components/general/NavBar';
+import {getFileContentFromStructure} from '../components/general/NavBar';
 
 export function setFileContentFromStructure(fileStructure: FileStructure[], filePath: string, content: string): FileStructure[] {
     const pathParts = filePath.split('/');
@@ -34,6 +34,7 @@ export function setFileContentFromStructure(fileStructure: FileStructure[], file
     return fileStructure;
 
 }
+
 const MyEditor: FC = () => {
     const {selectedFile, setExtractedContents, extractedContents} = useContext(FileStructureContext);
     const [fileContent, setFileContent] = useState<string>('');
@@ -45,8 +46,9 @@ const MyEditor: FC = () => {
     };
 
     useEffect(() => {
+        console.log("Running useEffect in Editor.tsx");
         setFileContent(getFileContentFromStructure(extractedContents, selectedFile) || '');
-    }, [selectedFile, extractedContents]);
+    });
 
     // const {fileName} = useParams<{ fileName: string }>();
 
