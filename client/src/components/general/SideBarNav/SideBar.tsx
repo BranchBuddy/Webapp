@@ -71,7 +71,7 @@ const Sidebar: React.FC = () => {
                             item.type === 'folder' && (
                                 <>
                                     <Code>{'📁 ' + item.name}</Code>
-                                    {item.children && item.children.length > 0 && renderFileStructure(item.children!, `${path}/${item.name}`, indent + 20)}
+                                    {item.children && item.children.length > 0 && renderFileStructure(item.children!, `${path}/${item.name}`, indent + 10)}
                                 </>
                             )
                         }

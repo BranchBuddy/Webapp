@@ -89,27 +89,7 @@ const GitHubLoader: React.FC<GitHubLoaderProps> = ({
     }
     }
 
-    const sendImproveRequest = async () => {
-        const requestBody = JSON.stringify({
-            code: 'def num(a,b):\nreturn a'
-        })
-        try {
-            const response = await apiClient.post('/improve', requestBody, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer your_token'
-                },
-                withCredentials: false,
-            })
-            console.log(response)
-            
-          } catch (error) {
-            console.error('Error sending data:', error);
-          }
-    }
 
-    //fetchCode();
-    sendImproveRequest();
   }, [owner, repo, filePath]);
 
   return (
