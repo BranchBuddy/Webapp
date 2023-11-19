@@ -1,6 +1,5 @@
 import React, {FC, useContext, useEffect, useState} from 'react';
 import Editor, {OnChange} from '@monaco-editor/react';
-import {useLoaderData, useParams} from 'react-router-dom';
 import {FileStructureContext} from "../ contexts/FileStructureContent";
 import {FileStructure} from "../components/general/SideBarNav/SideBar";
 
@@ -16,7 +15,6 @@ const MyEditor: FC = () => {
     };
 
     function getFileContentFromStructure(fileStructure: FileStructure[], filePath: string): string | undefined {
-        console.log("Running getFileContent in MyEditor.tsx")
         const pathParts = filePath.split('/');
         let currentLevel = fileStructure;
 

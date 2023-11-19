@@ -1,7 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     Navbar,
-    NavbarBrand,
     NavbarContent,
     NavbarItem,
     Link,
@@ -13,13 +12,24 @@ import {
 } from "@nextui-org/react";
 import {FaChevronDown} from "react-icons/fa6";
 import UploadFile from "../Modals/UploadFile";
+import DiffModal, {checkFileDifferences, DiffsToText} from "../Modals/DiffModal";
+import {FileStructureContext} from "../../ contexts/FileStructureContent";
 
 function NavBar() {
+    const {extractedContents} = useContext(FileStructureContext);
     const [isOpen, setIsOpen] = React.useState(false);
+    const [isDiffOpen, setIsDiffOpen] = React.useState(false);
+    const [text, setText] = React.useState('');
 
 
     const handleUpload = () => {
         setIsOpen(true);
+    }
+
+    const handleDiffs = () => {
+        const text = DiffsToText(checkFileDifferences(extractedContents));
+        setText(text);
+        setIsDiffOpen(true)
     }
 
     return (
@@ -73,10 +83,14 @@ function NavBar() {
                         <Button color="primary" href="#" variant="flat" onClick={handleUpload}>
                             Upload folder
                         </Button>
+                        <Button color="primary" href="#" variant="flat" onClick={handleDiffs}>
+                            Check differences
+                        </Button>
                     </NavbarItem>
                 </NavbarContent>
             </Navbar>
             <UploadFile isOpen={isOpen} onClose={() => setIsOpen(false)}/>
+            <DiffModal isOpen={isDiffOpen} onClose={() => setIsDiffOpen(false)} text={text}/>
         </>
     );
 }
