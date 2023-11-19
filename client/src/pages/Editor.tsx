@@ -21,7 +21,6 @@ export function setFileContentFromStructure(fileStructure: FileStructure[], file
         if (item.type === 'file' && i === pathParts.length - 1) {
             // Found the file, return its content
             item.content = content;
-            console.log("Found it and returned")
             return fileStructure;
         }
 
